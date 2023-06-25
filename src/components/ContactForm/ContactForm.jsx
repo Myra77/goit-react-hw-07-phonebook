@@ -5,7 +5,7 @@ import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
     const [name, setName] = useState('');
-    const [number, setNumber] = useState('');
+    const [phone, setPhone] = useState('');
     const dispatch = useDispatch();
     const contacts = useSelector(state => state.contacts);
 
@@ -14,16 +14,16 @@ export const ContactForm = () => {
 
     const handleInputChange = ({ target: { name, value } }) => {
         if (name === 'name') setName(value);
-        else if (name === 'number') setNumber(value);
+        else if (name === 'number') setPhone(value);
     };
 
     const handleSubmit = e => {
         e.preventDefault();
         if (contacts.items.some(contact => contact.name === name)) message(name)
-        else createContact({ name, number });
+        else createContact({ name, phone });
     
         setName('');
-        setNumber('');
+        setPhone('');
     };
     
     const message = name => alert(`${name} is already in contacts`);
@@ -51,7 +51,7 @@ export const ContactForm = () => {
                 <span className={css['label-text']}>Number</span>
                 <input
                     className={css.input}
-                    value={number}
+                    value={phone}
                     type="tel"
                     name="number"
                     onChange={handleInputChange}
