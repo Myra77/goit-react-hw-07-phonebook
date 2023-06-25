@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/action';
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
@@ -19,7 +19,7 @@ export const ContactForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (contacts.some(contact => contact.name === name)) message(name)
+        if (contacts.items.some(contact => contact.name === name)) message(name)
         else createContact({ name, number });
     
         setName('');
